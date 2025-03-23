@@ -19,22 +19,22 @@ public class Teamwork
         // before the surname of member 2...etc
         details[0] = "65";
         
-        details[1] = "surname of member1";
-        details[2] = "first name of member1";
-        details[3] = "SRN of member1";
+        details[1] = "Adam";
+        details[2] = "Ssamson";
+        details[3] = "22018521";
 
-        details[4] = "surname of member2";
-        details[5] = "first name of member2";
-        details[6] = "SRN of member2";
+        details[4] = "Fabiyi";
+        details[5] = "Samson";
+        details[6] = "22065067";
 
-        details[7] = "surname of member3";
-        details[8] = "first name of member3";
-        details[9] = "SRN of member3";
+        details[7] = "Stoica";
+        details[8] = "Mihai Lucian";
+        details[9] = "22060092";
 
 
-        details[10] = "surname of member4";
-        details[11] = "first name of member4";
-        details[12] = "SRN of member4";
+        details[10] = "Toledo";
+        details[11] = "Darrel";
+        details[12] = "22087552";
 
 	
 	   // only if applicable
