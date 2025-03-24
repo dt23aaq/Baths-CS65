@@ -6,7 +6,7 @@ package wars;
 
 /**
  *
- * @author lekan
+ * @author sf23abk
  */
 public abstract class Ship {
     private String name;
