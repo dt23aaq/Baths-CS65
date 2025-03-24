@@ -16,27 +16,28 @@ public class SeaBattles implements BATHS
 
     private String admiral;
     private double warChest;
-    private String filename;
 
 
 //**************** BATHS ************************** 
     /** Constructor requires the name of the admiral
      * @param adm the name of the admiral
      */  
-  
-
+    public SeaBattles(String adm)
+    {
+      
+        
+       setupShips();
+       setupEncounters();
+    }
     
     /** Constructor requires the name of the admiral and the
      * name of the file storing encounters
      * @param admir the name of the admiral
      * @param filename name of file storing encounters
      */  
-    public SeaBattles(String admir)  //Task 3
+    public SeaBattles(String admir, String filename)  //Task 3
     {
-      admiral = admir;
-//      this.filename = filename;
-       setupShips();
-       setupEncounters();
+      
         
        setupShips();
        // setupEncounters();
@@ -54,8 +55,8 @@ public class SeaBattles implements BATHS
      **/
     public String toString()
     {
-        String string = admiral;
-        return string ;
+        
+        return "null";
     }
     
     
@@ -66,13 +67,7 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
-        if (getWarChest() <= 0 && getSquadron().equals("No ships")){
-            return true;
-        }
-        else if (getWarChest() <= 0 && getReserveFleet().equals("No ships")){
-            return true;
-        }
-       return false;
+        return false;
     }
     
     /** returns the amount of money in the War Chest
@@ -240,7 +235,7 @@ public class SeaBattles implements BATHS
     //*******************************************************************************
      private void setupShips()
      {
-       HashMap<String,Integer> ships = new HashMap();
+       
 
      }
      
