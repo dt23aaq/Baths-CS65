@@ -9,15 +9,13 @@ package wars;
  * @author SF23abk
  */
 public class Encounter {
-    private int encounterNumber;
     private String location;
-    private EncounterType type;
+    private String type;
     private int skillRequired;
     private double prize;
     
-    public Encounter(int encounterNumber, String location, EncounterType type, 
+    public Encounter( String type, String location, 
                      int skillRequired, double prize) {
-        this.encounterNumber = encounterNumber;
         this.location = location;
         this.type = type;
         this.skillRequired = skillRequired;
@@ -25,15 +23,15 @@ public class Encounter {
     }
     
     // Getters
-    public int getEncounterNumber() { return encounterNumber; }
+    
     public String getLocation() { return location; }
-    public EncounterType getType() { return type; }
+    public String getType() { return type; }
     public int getskillRequired() { return skillRequired; }
     public double getPrize() { return prize; }
     
     @Override
     public String toString() {
-        return "Encounter #" + encounterNumber + ": " + location + 
+        return "Encounter #" +  ": " + location + 
                " (" + type + ") - Rating: " + skillRequired + 
                ", Prize: " + prize;
     }

@@ -10,7 +10,7 @@ package wars;
  */
 public abstract class Ship {
     private String name;
-    private double commissionFee;
+    public double commissionFee;
     private int battleSkill;
     private ShipState state;
     

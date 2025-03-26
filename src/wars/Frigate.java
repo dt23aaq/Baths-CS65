@@ -9,9 +9,12 @@ package wars;
  * @author lekan
  */
 public class Frigate extends Ship  {
-    public Frigate(String name, double commissionFee, int battleSkill){
+    private int cannons;
+    public Frigate(String name, double commissionFee, int battleSkill, int cannons){
         super(name, commissionFee, battleSkill);
-        
+        this.cannons  = cannons;
+        super.commissionFee = 10.0 * cannons;
+      
     }
     
     @Override
