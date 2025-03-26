@@ -221,7 +221,7 @@ public class T5FightEncounterTest {
     public void manOWarFacingSkirmishCantWinMoney() {
 
         double expected = 380;
-        game.commissionShip("Belerophon"); //warchest= 500
+        game.commissionShip("Belerophon"); //warchest= 500 battle skill is 3 for encounter 2,  Belerophon skill is 8  hence should have won 
         game.fightEncounter(2); //can't do, lose 180
         double actual = game.getWarChest();
         assertEquals(expected, actual,0.5);
@@ -274,7 +274,7 @@ public class T5FightEncounterTest {
     //  Frigate facing Blockade
     @Test
     public void FrigateFacingBlockadeNoPinacelosesMoney() {
-       game.commissionShip("Jupiter"); // warchest 800
+       game.commissionShip("Jupiter"); // warchest 800 jupiters skill 7 and encouter 3 skill level is 3  800+150 = 950
        game.fightEncounter(3);
        double actual = game.getWarChest();
        assertEquals(650, actual,0.5);

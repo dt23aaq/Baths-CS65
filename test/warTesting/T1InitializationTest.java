@@ -79,7 +79,7 @@ public class T1InitializationTest {
     @Test
     public void checkTeamEmptyAtStart() {
         boolean result = true;
-        List<String> ships = new ArrayList<String>(Arrays.asList("Victory","Sophie",
+        List<String> ships = new ArrayList<>(Arrays.asList("Victory","Sophie",
                  "Endeavour","Arrow", "Belerophon", "Surprise","Jupiter", "Paris", "Beast", "Athena"));
 
         for (String chmp : ships) {

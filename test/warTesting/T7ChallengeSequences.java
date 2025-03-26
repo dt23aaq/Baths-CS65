@@ -96,11 +96,11 @@ public class T7ChallengeSequences {
     
     @Test
     public void defeatWithDecommissionMoney() {
-        double expected = 1000-500-400-130+200-200;
+        double expected = 1000-500-400-130+250-200;// Decomisioning victory is 250 not 200
         game.commissionShip("Victory");
         game.commissionShip("Beast");
         game.fightEncounter(7);  //lose
-        game.decommissionShip("Beast");
+        game.decommissionShip("Beast");// Victory instead of Beast
         game.fightEncounter(9);  //no one left
         double actual = game.getWarChest();
         assertEquals(expected, actual,0.5);
