@@ -220,12 +220,12 @@ public class SeaBattles implements BATHS
             return "- Not available";
         }
         
-        if (warChest < ship.getCommissionFee()) {
+        if (warChest < ship.getcommissionFee()) {
             return "- Not enough money";
         }
     
         // Commission the ship
-        warChest = warChest - ship.getCommissionFee();
+        warChest = warChest - ship.getcommissionFee();
         ship.setState(ShipState.ACTIVE);
         reserveFleet.remove(ship);
         squadron.add(ship);
@@ -260,7 +260,7 @@ public class SeaBattles implements BATHS
         ship.setState(ShipState.RESERVE);
         squadron.remove(ship);
         reserveFleet.add(ship);
-        warChest = warChest + ship.getCommissionFee()/2;
+        warChest = warChest + ship.getcommissionFee()/2;
         
         return true;
     }
@@ -343,7 +343,7 @@ public class SeaBattles implements BATHS
         // Ship vs encounter battle
         else {
             // Compare ship skill vs encounter rating
-            if (bestShip.getBattleSkill() >= encounter.getskillRequired()) {
+            if (bestShip.getBattleSkill() >= encounter.getskillRequired() && bestShip.encounterType.contains(encounter.getType())) {
                 // Ship wins
                 warChest += encounter.getPrize();
                 bestShip.setState(ShipState.RESTING);
@@ -359,12 +359,22 @@ public class SeaBattles implements BATHS
                 bestShip.setState(ShipState.SUNK);
                 squadron.remove(bestShip);
                 sunkShips.add(bestShip);
-                
+                if(bestShip.getBattleSkill() <= encounter.getskillRequired()){
                 result.append("2-Encounter lost on battle skill and ")
                       .append(bestShip.getName())
                       .append(" sunk - deducted ")
                       .append(encounter.getPrize())
                       .append(" from War Chest.");
+                }
+                
+                if(!bestShip.encounterType.contains(encounter.getType())){
+                result.append("2-Encounter lost on encounter type. "+ bestShip.getType()+ " Cannot participate in ")
+                      .append(encounter.getType()+ "\n")
+                      .append(bestShip.getName())
+                      .append(" sunk - deducted ")
+                      .append(encounter.getPrize())
+                      .append(" from War Chest.");
+                }
                 
                 if (isDefeated()) {
                     result.append(" You have been defeated!");
@@ -422,16 +432,16 @@ public class SeaBattles implements BATHS
      private void setupShips()
      {
        ships = new HashMap<>();
-       Ship Victory = new ManOWar("Victory",500,3,3);
-       Ship Endeavour = new ManOWar("Endeavour",500,4,2);
-       Ship Belerophon = new ManOWar("Belerophon",500,8,3);
-       Ship Sophie = new Frigate("Sophie",160, 8, 16);
-       Ship Surprise = new Frigate("Surprise",100, 6, 10);
-       Ship Jupiter = new Frigate("Jupiter",200, 7, 20);
-       Ship Arrow = new Sloop("Arrow",150,5);
-       Ship Paris = new Sloop("Paris",200,5);
-       Ship Beast = new Sloop("Beast",400,5);
-       Ship Athena = new Sloop("Athena",100,5);
+       Ship Victory = new ManOWar("Victory",500,3,3,"Alan Aikin",30);
+       Ship Endeavour = new ManOWar("Endeavour",500,4,2,"Col Cannon",20);
+       Ship Belerophon = new ManOWar("Belerophon",500,8,3,"Ed Evans", 50);
+       Ship Sophie = new Frigate("Sophie",160, 8, 16,"Ben Baggins",true);
+       Ship Surprise = new Frigate("Surprise",100, 6, 10,"Fred Fox", false);
+       Ship Jupiter = new Frigate("Jupiter",200, 7, 20,"Gil Gamage",false);
+       Ship Arrow = new Sloop("Arrow",150,5,"Dan Dare",true);
+       Ship Paris = new Sloop("Paris",200,5,"Hal Henry",true);
+       Ship Beast = new Sloop("Beast",400,5,"Ian Idle", false);
+       Ship Athena = new Sloop("Athena",100,5,"John Jones ", true);
        
        ships.put(Victory.getName(),Victory);
        ships.put(Endeavour.getName(), Endeavour);

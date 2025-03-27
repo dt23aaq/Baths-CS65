@@ -90,7 +90,8 @@ public class GameUI
 //                SeaBattles myBattles=null;
                 myBattles.loadGame("olenka.dat");
                 System.out.println(myBattles.toString());               
-            }  
+            } 
+    
         }
         System.out.println("Thank-you");
     }

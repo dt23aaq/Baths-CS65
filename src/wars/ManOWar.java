@@ -4,22 +4,34 @@
  */
 package wars;
 
+
+
 /**
  *
  * @author lekan
  */
 public class ManOWar extends Ship {
     private int deck;
+    private int marines;
+    private String captain;
+    
+    
       
-    public ManOWar(String name, double commissionFee, int battleSkill,int deck){
-        super(name, commissionFee, battleSkill);
+    public ManOWar(String name, double commissionFee, int battleSkill,int deck,String captain, int marines){
+        super(name,commissionFee,  battleSkill);
+        super.commissionFee = commissionFee;
         this.deck = deck ;
-              if(deck < 3){
-         super.commissionFee = 300.0;
+        this.marines = marines;
+        this.captain = captain;
+         if(deck < 3){
+            super.commissionFee = 300.0;
         }
         else{
-          super.commissionFee = 500.0;
+            super.commissionFee = 500.0;
         }
+         
+         super.encounterType.add("Battle");
+         super.encounterType.add("Blockade");
     
     }
     
@@ -27,9 +39,9 @@ public class ManOWar extends Ship {
     public String getType(){
         return"ManOwar";
     }
-    public double getcommissionFee(){
-         return commissionFee;
-        
-    }
+ 
+    
+    @Override
+    public String toString() { return super.toString()+ "- Fee: " + super.commissionFee   + ", Captain: " + captain +", Deck: " + deck + ",  Marines: " + marines;}
    
 }

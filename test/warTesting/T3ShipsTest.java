@@ -47,6 +47,8 @@ public class T3ShipsTest {
         return result;
     }
     
+  
+    
     @Test
     public void isShipTest()
     {
@@ -57,7 +59,7 @@ public class T3ShipsTest {
     @Test
     public void getShipDetailsSophieTest(){
         String details = game.getShipDetails("Sophie");
-        String[] xx = {"Sophie","Ben Baggins","8","160"};
+        String[] xx = {"Sophie","8","160","Ben Baggins"};
         boolean actual = containsText(details,xx );
         assertTrue(actual);
     }

@@ -4,26 +4,28 @@
  */
 package wars;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sf23abk
  */
 public abstract class Ship {
     private String name;
-    public double commissionFee;
     private int battleSkill;
+    public double commissionFee;
     private ShipState state;
+    public ArrayList<String> encounterType;// Array to hold the encounters ship can peform in 
     
-    public Ship(String name, double commissionFee, int battleSkill) {
+    public Ship(String name,double commissionFee, int battleSkill) {
         this.name = name;
-        this.commissionFee = commissionFee;
         this.battleSkill = battleSkill;
         this.state = ShipState.RESERVE; // Default state
+        this.encounterType = new ArrayList<>();
     }
     
     // Getters and setters
     public String getName() { return name; }
-    public double getCommissionFee() { return commissionFee; }
     public int getBattleSkill() { return battleSkill; }
     public ShipState getState() { return state; }
     public void setState(ShipState state) { this.state = state; }
@@ -31,9 +33,14 @@ public abstract class Ship {
     // Ship-specific functionality
     public abstract String getType();
     
+    public double getcommissionFee(){
+         return commissionFee;
+        
+    }
+    
     @Override
     public String toString() {
-        return name + " (" + getType() + ") - Fee: " + commissionFee + 
+        return name + " (" + getType() + ") "  + 
                ", Battle Skill: " + battleSkill + ", State: " + state;
     }
 }

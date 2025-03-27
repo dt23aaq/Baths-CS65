@@ -15,7 +15,7 @@ public class Encounter {
     private double prize;
     
     public Encounter( String type, String location, 
-                     int skillRequired, double prize) {
+        int skillRequired, double prize) {
         this.location = location;
         this.type = type;
         this.skillRequired = skillRequired;
