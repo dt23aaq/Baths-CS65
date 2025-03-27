@@ -20,7 +20,7 @@ public class Teamwork
         details[0] = "65";
         
         details[1] = "Adam";
-        details[2] = "Ssamson";
+        details[2] = "Samson";
         details[3] = "22018521";
 
         details[4] = "Fabiyi";
