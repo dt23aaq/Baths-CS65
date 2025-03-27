@@ -10,13 +10,13 @@ import java.io.*;
  * @version 16/02/25
  */
 
-public class SeaBattles implements BATHS 
+public class SeaBattles implements BATHS
 {
     // may have one HashMap and select on stat
 
     private String admiral;
     private double warChest;
-    
+    private static final long serialVersionUID = 1L;
     
     // Collections to store ships and encounters
     private HashMap<String, Ship> ships; // All ships indexed by name
@@ -188,6 +188,7 @@ public class SeaBattles implements BATHS
     /** Returns details of any ship with the given name
      * @return details of any ship with the given name
      **/
+    @Override
     public String getShipDetails(String nme)
     {
         Ship ship = ships.get(nme);
@@ -248,6 +249,7 @@ public class SeaBattles implements BATHS
      * @param nme is the name of the ship
      * @return true if ship decommissioned, else false
      **/
+    @Override
     public boolean decommissionShip(String nme)
     {
         Ship ship = ships.get(nme);
@@ -267,11 +269,13 @@ public class SeaBattles implements BATHS
     /**Restores a ship to the squadron by setting their state to ACTIVE 
      * @param ref the name of the ship to be restored
      */
+    @Override
     public void restoreShip(String ref)
     {
         Ship ship = ships.get(ref);
         if (ship != null && squadron.contains(ship)) {
             ship.setState(ShipState.ACTIVE);
+            System.out.println(ref +": Restored and now Active ");
         }
         
     }
@@ -281,6 +285,7 @@ public class SeaBattles implements BATHS
      * @param num is the reference number of the encounter
      * @returns true if the reference number represents a encounter, else false
      **/
+    @Override
      public boolean isEncounter(int num)
      {
          
@@ -365,6 +370,10 @@ public class SeaBattles implements BATHS
                     result.append(" You have been defeated!");
                 }
             }
+            for (Ship ship : squadron){
+                if(ship.getState() == ShipState.RESTING && ship != bestShip )
+                    ship.setState(ShipState.ACTIVE);
+            }
         }
         
         result.append(" War Chest: ").append(warChest);
@@ -422,7 +431,7 @@ public class SeaBattles implements BATHS
        Ship Arrow = new Sloop("Arrow",150,5);
        Ship Paris = new Sloop("Paris",200,5);
        Ship Beast = new Sloop("Beast",400,5);
-       Ship Athena = new Sloop("Athena",100,2);
+       Ship Athena = new Sloop("Athena",100,5);
        
        ships.put(Victory.getName(),Victory);
        ships.put(Endeavour.getName(), Endeavour);
@@ -437,8 +446,8 @@ public class SeaBattles implements BATHS
      }
      
     private void setupEncounters(){
+     
         readEncounters("encountersAM.txt");
-        
     }
  
         
@@ -476,6 +485,7 @@ public class SeaBattles implements BATHS
             }
         reader.close();
         readfile.close();
+        
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -489,10 +499,13 @@ public class SeaBattles implements BATHS
     /** Writes whole game to the specified file
      * @param fname name of file storing requests
      */
+    @Override
     public void saveGame(String fname)
     {   // uses object serialisation 
            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fname))) {
             out.writeObject(this);
+            out.close();
+            System.out.println("Game saved successfully.");
         } catch (IOException e) {
             System.err.println("Error saving game: " + e.getMessage());
         }
@@ -503,11 +516,12 @@ public class SeaBattles implements BATHS
      * @param fname name of file storing the game
      * @return the game (as an SeaBattles object)
      */
+    @Override
     public SeaBattles loadGame(String fname)
     {   // uses object serialisation 
        
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fname))) {
-            return (SeaBattles) in.readObject();
+            return (SeaBattles) in.readObject(); // type casting it with SeaBattles
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error loading game: " + e.getMessage());
             return null;
