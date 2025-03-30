@@ -1,0 +1,30 @@
+@startuml
+abstract class wars.Ship
+annotation java.lang.Override
+class wars.Encounter
+class wars.Frigate
+class wars.GameGUI
+class wars.GameUI
+class wars.ManOWar
+class wars.SeaBattles
+class wars.Sloop
+class wars.Teamwork
+class wars.Tester
+enum wars.EncounterType
+enum wars.ShipState
+interface wars.BATHS
+interface wars.Serializable
+wars.Ship ..> java.lang.Override
+wars.Encounter ..> java.lang.Override
+wars.Frigate --|> wars.Ship
+wars.Frigate ..> java.lang.Override
+wars.ManOWar --|> wars.Ship
+wars.ManOWar ..> java.lang.Override
+wars.SeaBattles ..> java.lang.Override
+wars.SeaBattles --|> wars.BATHS
+wars.Sloop --|> wars.Ship
+wars.Sloop ..> java.lang.Override
+wars.EncounterType --|> wars.Serializable
+wars.ShipState --|> wars.Serializable
+wars.BATHS --|> wars.Serializable
+@enduml
