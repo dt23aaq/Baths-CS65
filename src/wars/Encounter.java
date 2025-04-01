@@ -4,11 +4,13 @@
  */
 package wars;
 
+import java.io.Serializable;
+
 /**
  *
  * @author SF23abk
  */
-public class Encounter {
+public class Encounter  implements Serializable{
     private String location;
     private String type;
     private int skillRequired;

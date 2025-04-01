@@ -4,13 +4,14 @@
  */
 package wars;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author sf23abk
  */
-public abstract class Ship {
+public abstract class Ship implements Serializable{
     private String name;
     private int battleSkill;
     public double commissionFee;

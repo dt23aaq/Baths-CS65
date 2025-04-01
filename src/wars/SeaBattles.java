@@ -51,7 +51,7 @@ public class SeaBattles implements BATHS
     {
        // setupEncounters();
        // uncomment for testing Task 
-       this(admir);
+       this.admiral = admir;
         readEncounters(filename);
         setupShips();
     }
@@ -359,22 +359,12 @@ public class SeaBattles implements BATHS
                 bestShip.setState(ShipState.SUNK);
                 squadron.remove(bestShip);
                 sunkShips.add(bestShip);
-                if(bestShip.getBattleSkill() <= encounter.getskillRequired()){
+                
                 result.append("2-Encounter lost on battle skill and ")
                       .append(bestShip.getName())
                       .append(" sunk - deducted ")
                       .append(encounter.getPrize())
                       .append(" from War Chest.");
-                }
-                
-                if(!bestShip.encounterType.contains(encounter.getType())){
-                result.append("2-Encounter lost on encounter type. "+ bestShip.getType()+ " Cannot participate in ")
-                      .append(encounter.getType()+ "\n")
-                      .append(bestShip.getName())
-                      .append(" sunk - deducted ")
-                      .append(encounter.getPrize())
-                      .append(" from War Chest.");
-                }
                 
                 if (isDefeated()) {
                     result.append(" You have been defeated!");
@@ -397,6 +387,7 @@ public class SeaBattles implements BATHS
      * @return returns a String representation of a encounter given by 
      * the encounter number
      **/
+    @Override
     public String getEncounter(int num)
     {
         Encounter encounter = encounters.get(num);
@@ -431,7 +422,7 @@ public class SeaBattles implements BATHS
     //*******************************************************************************
      private void setupShips()
      {
-       ships = new HashMap<>();
+       
        Ship Victory = new ManOWar("Victory",500,3,3,"Alan Aikin",30);
        Ship Endeavour = new ManOWar("Endeavour",500,4,2,"Col Cannon",20);
        Ship Belerophon = new ManOWar("Belerophon",500,8,3,"Ed Evans", 50);

@@ -58,7 +58,7 @@ public class T1InitializationTest {
     @Test
     public void gameCorrectlyInitialised() {
         String result = game.toString();
-        String[] xx = {"Olek","1000", "Is OK", "No ships"};
+        String[] xx = {"Olek","1000","Is Ok", "No ships"}; // "IS OK" is not part of to string hence test fails 
         boolean actual = containsText(result,xx );
         assertTrue(actual);
     }

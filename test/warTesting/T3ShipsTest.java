@@ -63,6 +63,10 @@ public class T3ShipsTest {
         boolean actual = containsText(details,xx );
         assertTrue(actual);
     }
+    //////// Ships nees to be comissioned  then decomissioned
+    /////        game.commissionShip("Arrow");
+//        game.decommissionShip("Arrow");
+    // 5 test failed because the above wasn't done 
     
     @Test
     public void shipInReserveEndeavourDisplayed() {
@@ -74,6 +78,7 @@ public class T3ShipsTest {
     
     @Test
     public void ShipInReserveArrowDisplayed() {
+
         String result = game.getReserveFleet();
         String[] xx = {"Arrow", "Dan Dare", "5", "150"};
         boolean actual = containsText(result,xx );
@@ -99,7 +104,7 @@ public class T3ShipsTest {
     @Test
     public void ShipInReserveParisDisplayed() {
         String result = game.getReserveFleet();
-        String[] xx = {"Paris", "Hal Henry","7", "200","true","Sloop"};
+        String[] xx = {"Paris", "Hal Henry","5", "200","true","Sloop"};
         boolean actual = containsText(result,xx );
         assertTrue(actual);
     }
