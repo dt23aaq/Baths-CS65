@@ -72,7 +72,7 @@ public class T6ShipDecommissionTest {
     
     @Test
     public void cantDecommissionSunkShip() {
-        double expected = 250 - 90; // warchest is 500  commissioning 3 ships warchest = 250  decomissioning victory = 250 
+        double expected = 250 - 90; // total commissioning is 500 + 150 +100 = 250 - 90 = 160 
         game.fightEncounter(5); //ship sunk
         game.decommissionShip("Victory"); // no change to War Chest
         double actual = game.getWarChest();

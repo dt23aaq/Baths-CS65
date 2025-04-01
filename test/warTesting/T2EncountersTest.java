@@ -66,7 +66,7 @@ public class T2EncountersTest {
     public void encounterSkirmishDisplayed() {
         boolean actual = false;
         String result = game.getAllEncounters();
-        String[] xx = {"2", "Skirmish", "Belle Isle", "3","120"};
+        String[] xx = {"2", "Skirmish", "BelleIsle", "3","120"}; //its "BelleIsle"  not "Belle Isle" in the encounterAM.txt
         actual = containsText(result,xx );
         assertTrue(actual);
     }

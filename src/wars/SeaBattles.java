@@ -51,7 +51,7 @@ public class SeaBattles implements BATHS
     {
        // setupEncounters();
        // uncomment for testing Task 
-       this.admiral = admir;
+       this(admir);
         readEncounters(filename);
         setupShips();
     }
@@ -140,7 +140,7 @@ public class SeaBattles implements BATHS
     {
         StringBuilder sb = new StringBuilder();
         if (squadron.isEmpty()) {
-           return "No ships";
+           return "No ships commissioned";
         } 
         for(Ship ship:squadron){
            sb.append(ship.toString()).append("\n");
@@ -158,7 +158,7 @@ public class SeaBattles implements BATHS
        
         StringBuilder sb = new StringBuilder();
         if (sunkShips.isEmpty()) {
-           return "No ships sunk yet";
+           return "no ships sunk yet";
         } 
         for(Ship ship:sunkShips){
            sb.append(ship.toString()).append("\n");
@@ -213,15 +213,15 @@ public class SeaBattles implements BATHS
          Ship ship = ships.get(nme);
         
         if (ship == null) {
-            return "- Ship not found";
+            return "Not found";
         }
         
         if (ship.getState() != ShipState.RESERVE) {
-            return "- Not available";
+            return "Not available";
         }
         
         if (warChest < ship.getcommissionFee()) {
-            return "- Not enough money";
+            return "Not enough money";
         }
     
         // Commission the ship
@@ -312,14 +312,28 @@ public class SeaBattles implements BATHS
     @Override
     public String fightEncounter(int encNo)
     {
+       StringBuilder result = new StringBuilder();
+        
+       
        Encounter encounter = encounters.get(encNo);
-        if (encounter == null) {
+        if (encounter == null ) {
             return "-1 No such encounter";
         }
         
+        //Create and array of ships/ship that can participate in an encounter
+        ArrayList<Ship> bestShips = new ArrayList<>();
+        for (Ship ship: squadron){
+            if(ship.encounterType.contains(encounter.getType())){
+                bestShips.add(ship);
+                
+            }
+        }
+        
+        
+        
         // Find a suitable ship for the encounter
         Ship bestShip = null;
-        for (Ship ship : squadron) {
+        for (Ship ship : bestShips) {
             if (ship.getState() == ShipState.ACTIVE) {
                 if (bestShip == null || ship.getBattleSkill() > bestShip.getBattleSkill()) {
                     bestShip = ship;
@@ -327,14 +341,18 @@ public class SeaBattles implements BATHS
             }
         }
         
-        StringBuilder result = new StringBuilder();
+        
         
         // No ships available
-        if (bestShip == null ) {
+        if (bestShip == null || !bestShip.encounterType.contains(encounter.getType()) ) {
             warChest -= encounter.getPrize();
             result.append("1-Encounter lost as no ship available - deducted ")
                   .append(encounter.getPrize())
                   .append(" from War Chest.");
+            for (Ship ship : squadron){
+                if(ship.getState() == ShipState.RESTING && ship != bestShip )
+                    ship.setState(ShipState.ACTIVE);
+            }
             
             if (isDefeated()) {
                 result.append(" You have been defeated!");
@@ -422,7 +440,7 @@ public class SeaBattles implements BATHS
     //*******************************************************************************
      private void setupShips()
      {
-       
+       ships = new HashMap<>();
        Ship Victory = new ManOWar("Victory",500,3,3,"Alan Aikin",30);
        Ship Endeavour = new ManOWar("Endeavour",500,4,2,"Col Cannon",20);
        Ship Belerophon = new ManOWar("Belerophon",500,8,3,"Ed Evans", 50);
@@ -444,6 +462,17 @@ public class SeaBattles implements BATHS
        ships.put(Paris.getName(), Paris);
        ships.put(Beast.getName(), Beast);
        ships.put(Athena.getName(), Athena);
+       
+       reserveFleet.add(Victory);
+       reserveFleet.add(Endeavour);
+       reserveFleet.add(Belerophon);
+       reserveFleet.add(Sophie);
+       reserveFleet.add(Surprise);
+       reserveFleet.add(Jupiter);
+       reserveFleet.add (Arrow);
+       reserveFleet.add(Paris);
+       reserveFleet.add(Beast);
+       reserveFleet.add(Athena);
      }
      
     private void setupEncounters(){
@@ -474,7 +503,7 @@ public class SeaBattles implements BATHS
             while (reader.hasNext()){
                 String line = reader.nextLine();
                 String[] array = line.split(",");
-                String type = array[0];
+                String type = array[0].strip();
                 String  location = array[1];
                 int skillRequired = Integer.parseInt(array[2]);
                 double prize = Double.parseDouble(array[3]);

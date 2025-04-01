@@ -136,7 +136,7 @@ public class T5FightEncounterTest {
     
     @Test
     public void manOWarFacingBattleRestingNotInSquadron() {
-        game.commissionShip("Victory");
+        game.commissionShip("Victory");  // in the spec, resting – in the squadron, but not available for encounters, (but can be decommissioned)
         game.fightEncounter(10);  //wins and rests
 
         assertFalse(game.isInSquadron("Victory")); 
