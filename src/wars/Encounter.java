@@ -8,7 +8,9 @@ package wars;
  *
  * @author SF23abk
  */
-public class Encounter {
+import java.io.Serializable;
+
+public class Encounter implements Serializable {
     private String location;
     private String type;
     private int skillRequired;
