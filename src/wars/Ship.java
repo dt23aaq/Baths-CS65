@@ -8,7 +8,9 @@ package wars;
  *
  * @author sf23abk
  */
-public abstract class Ship {
+import java.io.Serializable;
+
+public abstract class Ship implements Serializable{
     private String name;
     public double commissionFee;
     private int battleSkill;
