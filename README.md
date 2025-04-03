@@ -90,6 +90,7 @@ mvn test
 
 - Samson Fabiyi
 - Darrel Toledo
+- Mihai Lucian Stoica
 
 
 ## Future Enhancements
